@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kit Mission DEC | Meryem IBRAHYM — Session Mai 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --terracotta: #C1603A;
+  --terracotta-light: #D4845F;
+  --terracotta-dark: #9B4A2C;
+  --beige: #F2E8D9;
+  --beige-dark: #E8D8C0;
+  --beige-deep: #D4C4A8;
+  --ocre: #C8922A;
+  --ocre-light: #E8B84B;
+  --sable: #F9F3EA;
+  --brun: #5C3D2E;
+  --brun-light: #8B6248;
+  --charbon: #2A1F1A;
+  --blanc-chaud: #FDF8F2;
+  --vert: #3D6B5A;
+  --shadow: rgba(92,61,46,0.15);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  background: var(--sable);
+  color: var(--charbon);
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+body::before {
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cg fill='none' stroke='%23C1603A' stroke-width='0.4' opacity='0.06'%3E%3Cpath d='M40 0L80 40L40 80L0 40Z'/%3E%3Cpath d='M40 10L70 40L40 70L10 40Z'/%3E%3Cpath d='M40 20L60 40L40 60L20 40Z'/%3E%3Cline x1='0' y1='0' x2='80' y2='80'/%3E%3Cline x1='80' y1='0' x2='0' y2='80'/%3E%3C/g%3E%3C/svg%3E");
+  pointer-events:none;
+  z-index:0;
+}
+
+/* NAV */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:200;
+  background:rgba(42,31,26,0.97);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(193,96,58,0.25);
+  height:58px;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 3rem;
+}
+.nav-logo {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1rem; font-weight:400;
+  color:var(--beige); letter-spacing:0.08em;
+  display:flex; align-items:center; gap:0.6rem;
+}
+.nav-logo .puce { color:var(--ocre); font-size:1.2rem; }
+.nav-liens { display:flex; gap:2.5rem; list-style:none; }
+.nav-liens a {
+  color:rgba(242,232,217,0.5); text-decoration:none;
+  font-size:0.72rem; font-weight:500;
+  letter-spacing:0.14em; text-transform:uppercase;
+  transition:color 0.2s;
+}
+.nav-liens a:hover { color:var(--ocre-light); }
+
+/* HERO */
+.hero {
+  position:relative; min-height:100vh;
+  display:flex; flex-direction:column;
+  justify-content:center; align-items:center;
+  text-align:center; padding:6rem 2rem 4rem;
+  background: linear-gradient(160deg, var(--brun) 0%, var(--charbon) 40%, #1A0F0A 100%);
+  overflow:hidden;
+}
+.hero::before {
+  content:''; position:absolute; inset:0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cg fill='none' stroke='%23C8922A' stroke-width='0.5' opacity='0.08'%3E%3Cpath d='M60 0L120 60L60 120L0 60Z'/%3E%3Cpath d='M60 15L105 60L60 105L15 60Z'/%3E%3Cpath d='M60 30L90 60L60 90L30 60Z'/%3E%3Ccircle cx='60' cy='60' r='25'/%3E%3Ccircle cx='60' cy='60' r='40'/%3E%3C/g%3E%3C/svg%3E");
+  pointer-events:none;
+}
+.ornement {
+  display:flex; align-items:center; gap:1rem;
+  margin-bottom:2.5rem;
+  opacity:0; animation:monter 0.8s 0.2s forwards;
+}
+.ornement .trait { width:60px; height:1px; background:linear-gradient(90deg, transparent, var(--ocre)); }
+.ornement .trait.droite { background:linear-gradient(90deg, var(--ocre), transparent); }
+.ornement span { font-size:0.65rem; letter-spacing:0.22em; color:var(--ocre); text-transform:uppercase; font-weight:500; }
+.hero-surtitre {
+  font-size:0.7rem; letter-spacing:0.25em; color:rgba(200,146,42,0.7);
+  text-transform:uppercase; font-weight:500; margin-bottom:1.2rem;
+  opacity:0; animation:monter 0.8s 0.3s forwards;
+}
+.hero-titre {
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.2rem, 5vw, 4rem); font-weight:300;
+  color:var(--beige); line-height:1.2;
+  max-width:820px; margin:0 auto 1.5rem;
+  opacity:0; animation:monter 0.8s 0.4s forwards;
+}
+.hero-titre em { font-style:italic; color:var(--ocre-light); }
+.hero-soustitre {
+  font-size:0.95rem; color:rgba(242,232,217,0.5);
+  font-weight:300; letter-spacing:0.05em;
+  max-width:580px; line-height:1.8;
+  margin:0 auto 3rem;
+  opacity:0; animation:monter 0.8s 0.5s forwards;
+}
+.hero-chiffres {
+  display:flex; gap:3rem; justify-content:center; flex-wrap:wrap;
+  opacity:0; animation:monter 0.8s 0.7s forwards;
+}
+.chiffre-item { text-align:center; }
+.chiffre-item .nb {
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.2rem; font-weight:600;
+  color:var(--ocre-light); display:block; line-height:1;
+}
+.chiffre-item .libelle {
+  font-size:0.65rem; letter-spacing:0.18em;
+  color:rgba(242,232,217,0.35); text-transform:uppercase;
+  display:block; margin-top:0.3rem;
+}
+.defilement {
+  position:absolute; bottom:2.5rem; left:50%; transform:translateX(-50%);
+  display:flex; flex-direction:column; align-items:center; gap:0.5rem;
+  opacity:0; animation:monter 0.8s 1s forwards;
+}
+.defilement span { font-size:0.6rem; letter-spacing:0.2em; color:rgba(200,146,42,0.5); text-transform:uppercase; }
+.ligne-scroll { width:1px; height:40px; background:linear-gradient(180deg, var(--ocre), transparent); animation:pulsation 1.5s ease-in-out infinite; }
+
+/* À PROPOS */
+.apropos {
+  position:relative; z-index:1;
+  background:var(--blanc-chaud); padding:6rem 2rem;
+}
+.apropos-grille {
+  max-width:1100px; margin:0 auto;
+  display:grid; grid-template-columns:1fr 1.6fr;
+  gap:5rem; align-items:start;
+}
+.apropos-gauche { position:sticky; top:80px; }
+.etiquette-section { display:flex; align-items:center; gap:0.8rem; margin-bottom:1.5rem; }
+.etiquette-section .barre { width:28px; height:2px; background:var(--terracotta); }
+.etiquette-section span { font-size:0.65rem; letter-spacing:0.22em; color:var(--terracotta); text-transform:uppercase; font-weight:500; }
+.apropos-titre {
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.6rem; font-weight:300;
+  color:var(--charbon); line-height:1.2; margin-bottom:1.5rem;
+}
+.apropos-titre strong { font-weight:600; color:var(--terracotta); }
+.auteur-bloc {
+  display:flex; align-items:center; gap:1rem;
+  padding:1.2rem 1.5rem;
+  background:var(--beige); border-left:3px solid var(--ocre);
+  border-radius:0 6px 6px 0;
+}
+.initiales {
+  width:44px; height:44px; border-radius:50%;
+  background:linear-gradient(135deg, var(--terracotta), var(--ocre));
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Cormorant Garamond',serif; font-size:1.1rem;
+  font-weight:600; color:white; flex-shrink:0;
+}
+.auteur-info .nom { font-size:0.85rem; font-weight:500; color:var(--charbon); letter-spacing:0.04em; }
+.auteur-info .role { font-size:0.72rem; color:var(--brun-light); letter-spacing:0.06em; }
+.texte-intro {
+  font-size:1.05rem; line-height:1.9; color:#3D2E26;
+  margin-bottom:2rem; font-weight:300;
+}
+.texte-intro strong { font-weight:600; color:var(--terracotta-dark); }
+.problematique {
+  background:var(--beige); border:1px solid var(--beige-deep);
+  border-radius:8px; padding:1.8rem 2rem; margin-bottom:2rem;
+}
+.problematique .etiq { font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--ocre); font-weight:600; margin-bottom:0.8rem; }
+.problematique p {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.15rem; font-style:italic;
+  color:var(--charbon); line-height:1.7;
+}
+.phases-liste { display:flex; flex-direction:column; gap:1rem; }
+.phase-ligne {
+  display:flex; align-items:flex-start; gap:1.2rem;
+  padding:1.2rem 1.5rem; background:var(--sable);
+  border-radius:8px; border:1px solid var(--beige-dark);
+  transition:border-color 0.2s, transform 0.2s;
+}
+.phase-ligne:hover { transform:translateX(4px); }
+.phase-ligne.p1:hover { border-color:var(--terracotta-light); }
+.phase-ligne.p2:hover { border-color:var(--ocre-light); }
+.phase-ligne.p3:hover { border-color:var(--vert); }
+.num-phase {
+  width:32px; height:32px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Cormorant Garamond',serif; font-size:1rem; font-weight:700; flex-shrink:0;
+}
+.num-phase.p1 { background:rgba(193,96,58,0.12); color:var(--terracotta); }
+.num-phase.p2 { background:rgba(200,146,42,0.12); color:var(--ocre); }
+.num-phase.p3 { background:rgba(61,107,90,0.12); color:var(--vert); }
+.phase-nom { font-size:0.78rem; font-weight:600; color:var(--charbon); letter-spacing:0.04em; margin-bottom:0.25rem; }
+.phase-desc { font-size:0.75rem; color:var(--brun-light); line-height:1.6; }
+
+/* SECTIONS OUTILS */
+.section { position:relative; z-index:1; padding:5rem 2rem; }
+.section:nth-child(odd) { background:var(--sable); }
+.section:nth-child(even) { background:var(--blanc-chaud); }
+.en-tete-section { max-width:1100px; margin:0 auto 2.5rem; }
+.bandeau-phase {
+  display:flex; align-items:center; gap:1.5rem;
+  padding:1.5rem 2rem; border-radius:10px;
+  position:relative; overflow:hidden;
+}
+.bandeau-phase::before {
+  content:''; position:absolute; inset:0; opacity:0.06;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M30 0L60 30L30 60L0 30Z' fill='none' stroke='white' stroke-width='1'/%3E%3C/svg%3E");
+}
+.bandeau-phase.p1 { background:linear-gradient(135deg, var(--terracotta), var(--terracotta-dark)); }
+.bandeau-phase.p2 { background:linear-gradient(135deg, var(--ocre), #9B6E18); }
+.bandeau-phase.p3 { background:linear-gradient(135deg, var(--vert), #2A4F3D); }
+.bandeau-icone { font-size:2.5rem; opacity:0.9; }
+.bandeau-num { font-size:0.65rem; letter-spacing:0.22em; text-transform:uppercase; color:rgba(255,255,255,0.6); margin-bottom:0.2rem; }
+.bandeau-titre { font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:600; color:white; letter-spacing:0.03em; }
+.bandeau-sous { font-size:0.78rem; color:rgba(255,255,255,0.55); margin-top:0.2rem; }
+
+/* GRILLE CARTES */
+.grille-cartes {
+  max-width:1100px; margin:2.5rem auto 0;
+  display:grid; grid-template-columns:repeat(auto-fill, minmax(300px, 1fr));
+  gap:1.2rem;
+}
+.carte {
+  background:white; border:1px solid var(--beige-dark);
+  border-radius:10px; padding:1.6rem;
+  display:flex; flex-direction:column; gap:1rem;
+  transition:box-shadow 0.25s, transform 0.25s, border-color 0.25s;
+  position:relative; overflow:hidden;
+}
+.carte::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+}
+.carte.p1::before { background:linear-gradient(90deg, var(--terracotta), var(--terracotta-light)); }
+.carte.p2::before { background:linear-gradient(90deg, var(--ocre), var(--ocre-light)); }
+.carte.p3::before { background:linear-gradient(90deg, var(--vert), #6DB89A); }
+.carte:hover { box-shadow:0 8px 32px var(--shadow); transform:translateY(-3px); }
+.carte.p1:hover { border-color:var(--terracotta-light); }
+.carte.p2:hover { border-color:var(--ocre-light); }
+.carte.p3:hover { border-color:var(--vert); }
+.carte-haut { display:flex; justify-content:space-between; align-items:flex-start; gap:0.8rem; }
+.carte-num {
+  font-family:'Cormorant Garamond',serif; font-size:2rem;
+  font-weight:700; line-height:1; flex-shrink:0;
+}
+.carte.p1 .carte-num { color:rgba(193,96,58,0.18); }
+.carte.p2 .carte-num { color:rgba(200,146,42,0.18); }
+.carte.p3 .carte-num { color:rgba(61,107,90,0.18); }
+.badges { display:flex; flex-wrap:wrap; gap:0.3rem; justify-content:flex-end; }
+.badge {
+  font-size:0.58rem; font-weight:600; letter-spacing:0.1em;
+  text-transform:uppercase; padding:0.2rem 0.5rem; border-radius:3px;
+}
+.b-pdf { background:rgba(193,96,58,0.1); color:var(--terracotta); }
+.b-xlsx { background:rgba(61,107,90,0.1); color:var(--vert); }
+.b-docx { background:rgba(41,98,170,0.1); color:#2962AA; }
+.b-pptx { background:rgba(200,146,42,0.1); color:var(--ocre); }
+.b-ia { background:rgba(111,58,170,0.1); color:#6F3AAA; }
+.b-notion { background:rgba(42,42,42,0.08); color:#2A2A2A; }
+.carte-titre { font-size:0.88rem; font-weight:600; color:var(--charbon); line-height:1.4; }
+.carte-desc { font-size:0.78rem; color:var(--brun-light); line-height:1.7; flex:1; }
+.carte-objectif {
+  font-size:0.72rem; color:var(--brun); line-height:1.6;
+  padding:0.8rem 1rem; border-radius:6px; font-style:italic;
+}
+.carte.p1 .carte-objectif { background:rgba(193,96,58,0.05); border-left:2px solid var(--terracotta-light); }
+.carte.p2 .carte-objectif { background:rgba(200,146,42,0.05); border-left:2px solid var(--ocre-light); }
+.carte.p3 .carte-objectif { background:rgba(61,107,90,0.05); border-left:2px solid var(--vert); }
+.carte-boutons { display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:auto; }
+.btn {
+  display:inline-flex; align-items:center; gap:0.4rem;
+  padding:0.55rem 1rem; border-radius:5px;
+  text-decoration:none; font-size:0.72rem;
+  font-weight:500; letter-spacing:0.05em;
+  transition:all 0.2s; flex:1; justify-content:center;
+}
+.btn-terracotta { background:var(--terracotta); color:white; }
+.btn-terracotta:hover { background:var(--terracotta-dark); }
+.btn-ocre { background:var(--ocre); color:white; }
+.btn-ocre:hover { background:#A87620; }
+.btn-vert { background:var(--vert); color:white; }
+.btn-vert:hover { background:#2A4F3D; }
+.btn-beige { background:var(--beige); color:var(--brun); border:1px solid var(--beige-deep); }
+.btn-beige:hover { background:var(--beige-dark); }
+.btn-sombre { background:var(--charbon); color:white; }
+.btn-sombre:hover { background:#1A0F0A; }
+
+/* PIED DE PAGE */
+footer {
+  position:relative; z-index:1;
+  background:var(--charbon); padding:3.5rem 2rem; text-align:center;
+}
+.pied-ornement { font-family:'Cormorant Garamond',serif; font-size:2rem; color:var(--ocre); opacity:0.35; margin-bottom:1rem; letter-spacing:0.3em; }
+.pied-titre { font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:var(--beige); font-weight:300; letter-spacing:0.1em; margin-bottom:0.5rem; }
+.pied-sous { font-size:0.72rem; color:rgba(242,232,217,0.3); letter-spacing:0.12em; }
+
+/* ANIMATIONS */
+@keyframes monter {
+  from { opacity:0; transform:translateY(20px); }
+  to { opacity:1; transform:translateY(0); }
+}
+@keyframes pulsation {
+  0%,100% { opacity:0.4; transform:scaleY(1); }
+  50% { opacity:1; transform:scaleY(1.2); }
+}
+.apparition { opacity:0; transform:translateY(24px); transition:opacity 0.6s, transform 0.6s; }
+.apparition.visible { opacity:1; transform:none; }
+
+/* RESPONSIVE */
+@media(max-width:768px) {
+  nav { padding:0 1.5rem; }
+  .nav-liens { display:none; }
+  .apropos-grille { grid-template-columns:1fr; gap:2.5rem; }
+  .apropos-gauche { position:static; }
+  .grille-cartes { grid-template-columns:1fr; }
+  .hero-chiffres { gap:1.8rem; }
+  .bandeau-phase { flex-direction:column; gap:0.8rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <div class="nav-logo">
+    <span class="puce">◆</span>
+    Kit Mission DEC — Meryem IBRAHYM
+  </div>
+  <ul class="nav-liens">
+    <li><a href="#apropos">À propos</a></li>
+    <li><a href="#phase1">Phase I</a></li>
+    <li><a href="#phase2">Phase II</a></li>
+    <li><a href="#phase3">Phase III</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="ornement">
+    <span class="trait"></span>
+    <span>Mémoire DEC · Session Mai 2026</span>
+    <span class="trait droite"></span>
+  </div>
+  <p class="hero-surtitre">Diplôme d'Expertise Comptable</p>
+  <h1 class="hero-titre">
+    L'accompagnement des investissements<br>
+    <em>immobiliers touristiques</em><br>
+    franco-marocains au Maroc
+  </h1>
+  <p class="hero-soustitre">
+    Proposition d'un kit mission à destination de l'expert-comptable — de l'acquisition au pilotage post-création, structuré en 22 outils opérationnels.
+  </p>
+  <div class="hero-chiffres">
+    <div class="chiffre-item"><span class="nb">22</span><span class="libelle">Outils</span></div>
+    <div class="chiffre-item"><span class="nb">3</span><span class="libelle">Phases</span></div>
+    <div class="chiffre-item"><span class="nb">100p</span><span class="libelle">Mémoire</span></div>
+    <div class="chiffre-item"><span class="nb">2026</span><span class="libelle">Session</span></div>
+  </div>
+  <div class="defilement">
+    <span>Découvrir</span>
+    <div class="ligne-scroll"></div>
+  </div>
+</section>
+
+<!-- À PROPOS -->
+<section class="apropos" id="apropos">
+  <div class="apropos-grille">
+    <div class="apropos-gauche apparition">
+      <div class="etiquette-section"><div class="barre"></div><span>À propos</span></div>
+      <h2 class="apropos-titre">Le mémoire<br>& la <strong>démarche</strong></h2>
+      <div class="auteur-bloc">
+        <div class="initiales">MI</div>
+        <div class="auteur-info">
+          <div class="nom">Meryem IBRAHYM</div>
+          <div class="role">Candidate DEC · Session Mai 2026</div>
+        </div>
+      </div>
+    </div>
+    <div class="apropos-droite apparition">
+      <p class="texte-intro">
+        Chaque année, des centaines d'investisseurs français et MRE se lancent dans l'immobilier touristique au Maroc — riads, maisons d'hôtes, boutique hôtels. Pourtant, faute d'un accompagnement professionnel adapté, trop de projets échouent face à la <strong>complexité juridique, fiscale et interculturelle</strong> de cet environnement.
+      </p>
+      <p class="texte-intro">
+        Ce mémoire positionne l'<strong>expert-comptable comme partenaire stratégique central</strong> de ces investissements transfrontaliers. Il propose un kit mission complet, chronologique et immédiatement opérationnel — structuré en trois phases qui suivent le déroulement réel de la mission, de la découverte du marché marocain jusqu'au pilotage post-création.
+      </p>
+      <div class="problematique">
+        <div class="etiq">Problématique centrale</div>
+        <p>Comment l'expert-comptable peut-il accompagner efficacement l'acquisition, la sécurisation, la gestion et le pilotage des investissements immobiliers touristiques des franco-marocains à travers la proposition d'un kit mission structuré et adapté ?</p>
+      </div>
+      <div class="phases-liste">
+        <div class="phase-ligne p1">
+          <div class="num-phase p1">I</div>
+          <div>
+            <div class="phase-nom">Phase de Connaissance</div>
+            <div class="phase-desc">Comprendre le marché marocain, maîtriser l'environnement réglementaire franco-marocain et structurer l'offre de mission.</div>
+          </div>
+        </div>
+        <div class="phase-ligne p2">
+          <div class="num-phase p2">II</div>
+          <div>
+            <div class="phase-nom">Phase de Sécurisation & Structuration</div>
+            <div class="phase-desc">Due diligences, montage juridique & fiscal, financement et élaboration du prévisionnel financier du projet.</div>
+          </div>
+        </div>
+        <div class="phase-ligne p3">
+          <div class="num-phase p3">III</div>
+          <div>
+            <div class="phase-nom">Phase de Pilotage & Accompagnement</div>
+            <div class="phase-desc">Suivi comptable transfrontalier, tableaux de bord intelligents, RSE, fiscalité du dirigeant et rapatriement des fonds.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     PHASE I — CONNAISSANCE
+══════════════════════════════════════ -->
+<section class="section" id="phase1">
+  <div class="en-tete-section apparition">
+    <div class="bandeau-phase p1">
+      <div class="bandeau-icone">🧭</div>
+      <div>
+        <div class="bandeau-num">Phase I · Outils 01 à 08</div>
+        <div class="bandeau-titre">Phase de Connaissance</div>
+        <div class="bandeau-sous">Marché marocain · Environnement réglementaire · Positionnement de l'expert-comptable</div>
+      </div>
+    </div>
+  </div>
+  <div class="grille-cartes">
+
+    <div class="carte p1 apparition">
+      <div class="carte-haut">
+        <span class="carte-num">01</span>
+        <div class="badges"><span class="badge b-pdf">PDF</span></div>
+      </div>
+      <div class="carte-titre">Fiche Pays & Catalogue des Typologies de Biens</div>
+      <div class="carte-desc">Présentation visuelle du marché marocain : chiffres clés du tourisme, positionnement géostratégique et panorama illustré des typologies de biens (riads, maisons d'hôtes, boutique hôtels, résidences touristiques).</div>
+      <div class="carte-objectif">Offrir à l'expert-comptable une base documentaire visuelle pour présenter le marché à ses clients.</div>
+      <div class="carte-boutons">
+        <a href="outils/outil_01_fiche_pays.pdf" class="btn btn-terracotta" download>⬇ Télécharger PDF</a>
+      </div>
+    </div>
+
+    <div class="carte p1 apparition">
+      <div class="carte-haut">
+        <span class="carte-num">02</span>
+        <div class="badges"><span class="badge b-pdf">PDF</span></div>
+      </div>
+      <div class="carte-titre">Fiches Personas — L'Investisseur Type au Maroc</div>
+      <div class="carte-desc">Profils détaillés des trois personas cibles : investisseur français, MRE de France, couple franco-marocain. Motivations, freins, attentes et comportements décisionnels pour chaque profil.</div>
+      <div class="carte-objectif">Adapter le discours et l'offre de l'expert-comptable selon le profil de son client.</div>
+      <div class="carte-boutons">
+        <a href="outils/outil_02_personas.pdf" class="btn btn-terracotta" download>⬇ Télécharger PDF</a>
+      </div>
+    </div>
+
+    <div class="carte p1 apparition">
+      <div class="carte-haut">
+        <span class="carte-num">03</span>
+        <div class="badges"><span class="badge b-pdf">PDF</span><span class="badge b-ia">IA</span></div>
+      </div>
+      <div class="carte-titre">Guide Chatbot IA — Modèles de Prompts Franco-Marocains</div>
+      <div class="carte-desc">Guide d'utilisation d'un chatbot entraîné sur la réglementation franco-marocaine, avec une bibliothèque de prompts prêts à l'emploi. Réduction de 70 % du temps de recherche documentaire (testé sur 70 requêtes).</div>
+      <div class="carte-objectif">Centraliser et automatiser la recherche d'informations réglementaires pour gagner en efficacité.</div>
+      <div class="carte-boutons">
+        <a href="outils/outil_03_chatbot.pdf" class="btn btn-terracotta" download>⬇ Télécharger PDF</a>
+      </div>
+    </div>
+
+    <div class="carte p1 apparition">
+      <div class="carte-haut">
+        <span class="carte-num">04</span>
+        <div class="badges"><span class="badge b-xlsx">Excel</span></div>
+      </div>
+      <div class="carte-titre">Matrice RACI — Rôles & Responsabilités de la Mission</div>
+      <div class="carte-desc">Répartition des responsabilités entre l'expert-comptable français, l'expert-comptable marocain, les partenaires locaux (notaire, avocat, CRI) et le client investisseur pour chaque étape de la mission.</div>
+      <div class="carte-objectif">Clarifier les périmètres d'intervention et fluidifier la collaboration transfrontalière.</div>
+      <div class="carte-boutons">
+        <a href="outils/outil_04_raci.xlsx" class="btn btn-vert" download>⬇ Télécharger Excel</a>
+      </div>
+    </div>
+
+    <div class="carte p1 apparition">
+      <div class="carte-haut">
+        <span class="carte-num">05</span>
+        <div class="badges"><span class="badge b-pdf">PDF</span></div>
+      </div>
+      <div class="carte-titre">Kit Mission — Création de l'Offre Commerciale</div>
+      <div class="carte-desc">Packages de services prêts à présenter aux clients (Basic, Accompagnement Complet, Excellence), grille tarifaire indicative et argumentaire pour positionner le cabinet sur ce marché de niche.</div>
+      <div class="carte-objectif">Doter l'expert-comptable d'une offre structurée et différenciante pour capter ces clients.</div>
+      <div class="carte-boutons">
+        <a href="outils/outil_05_kit_offre.pdf" class="btn btn-terracotta" download>⬇ Télécharger PDF</a>
+      </div>
+    </div>
+
+    <div class="carte p1 apparition">
+      <div class="carte-haut">
+        <span class="carte-num">06</span>
+        <div class="badges"><span class="badge b-pdf">PDF</span><span class="badge b-pdf">PDF</span></div>
+      </div>
+      <div class="carte-titre">Kit Mission — Acceptation & Lettre de Mission</div>
+      <div class="carte-desc">Processus complet d'entrée en relation : questionnaire de prise de connaissance client, check-list d'acceptation de mission et modèle de lettre de mission adapté au contexte franco-marocain.</div>
+      <div class="carte-objectif">Formaliser et sécuriser l'entrée en relation avec l'investisseur dès la première prise de contact.</div>
+      <div class="carte-boutons">
+        <a href="outils/outil_06_questionnaire.pdf" class="btn btn-terracotta" download>⬇ Questionnaire</a>
+        <a href="outils/outil_06b_lettre_mission.pdf" class="btn btn-beige" download>⬇ Lettre de mission</a>
+      </div>
+    </div>
+
+    <div class="carte p1 apparition">
+      <div class="carte-haut">
+        <span class="carte-num">07</span>
+        <div class="badges"><span class="badge b-pdf">PDF</span></div>
+      </div>
+      <div class="carte-titre">Plan de Formation — Montée en Compétences du Cabinet</div>
+      <div class="carte-desc">Programme de formation interne couvrant le droit immobilier marocain, la convention fiscale franco-marocaine, la réglementation des changes et les codes culturels professionnels au Maroc.</div>
+      <div class="carte-objectif">Organiser la montée en compétences des collaborateurs pour sécuriser la qualité de la mission.</div>
+      <div class="carte-boutons">
+        <a href="outils/outil_07_formation.pdf" class="btn btn-terracotta" download>⬇ Télécharger PDF</a>
+      </div>
+    </div>
+
+    <div class="carte p1 apparition">
+      <div class="carte-haut">
+        <span class="carte-num">08</span>
+        <div class="badges"><span class="badge b-pdf">PDF</span></div>
+      </div>
+      <div class="carte-titre">Tableau des Organismes Partenaires Marocains</div>
+      <div class="carte-desc">Cartographie des interlocuteurs clés à Marrakech et au Maroc : notaires, avocats, CRI, CNSS, DGI, Office des Changes, experts-comptables OEC et agences immobilières de confiance.</div>
+      <div class="carte-objectif">Faciliter la construction du réseau local indispensable à la réussite des missions transfrontalières.</div>
+      <div class="carte-boutons">
+        <a href="outils/outil_08_partenaires.pdf" class="btn btn-terracotta" download>⬇ Télécharger PDF</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     PHASE II — SÉCURISATION
+══════════════════════════════════════ -->
+<section class="section" id="phase2">
+  <div class="en-tete-section apparition">
+    <div class="bandeau-phase p2">
+      <div class="bandeau-icone">🔐</div>
+      <div>
+        <div class="bandeau-num">Phase II · Outils 09 à 17</div>
+        <div class="bandeau-titre">Phase de Sécurisation & Structuration</div>
+        <div class="bandeau-sous">Due diligences · Montage juridique & fiscal · Prévisionnel financier</div>
+      </div>
+    </div>
+  </div>
+  <div class="grille-cartes">
+
+    <div class="carte p2 apparition">
+      <div class="carte-haut">
+        <span class="carte-num">09</span>
+        <div class="badges"><span class="badge b-xlsx">Excel</span></div>
+      </div>
+      <div class="carte-titre">Matrice Due Diligences — Scoring Automatisé</div>
+      <div class="carte-desc">Audit complet en trois volets : juridico-foncier (titres de propriété, Melk, Habous), technique (état du bien, estimation travaux) et financier (rentabilité, éligibilité subventions). Scoring automatisé et rapport go/no-go.</div>
+      <div class="carte-objectif">Identifier en amont tous les risques évitables — 45 % des investisseurs rencontrent des difficultés identifiables par due diligence.</div>
+      <div class="carte-boutons">
+        <a href="outils/outil_09_due_diligences.xlsx" class="btn btn-ocre" download>⬇ Télécharger Excel</a>
+      </div>
+    </div>
+
+    <div class="carte p2 apparition">
+      <div class="carte-haut">
+        <span class="carte-num">10</span>
+        <div class="badges"><span class="badge b-pdf">PDF</span><span class="badge b-pdf">PDF</span></div>
+      </div>
+      <div class="carte-titre">Guides Subventions — GO SIYAHA & MOUKAWALA SIYAHA</div>
+      <div class="carte-desc">Deux guides pratiques sur les conditions d'éligibilité, les montants, la procédure de demande et les pièces justificatives pour les deux programmes de subvention du Ministère du Tourisme marocain.</div>
+      <div class="carte-objectif">Accompagner le client dans l'optimisation du financement via les aides publiques marocaines.</div>
+      <div class="carte-boutons">
+        <a href="outils/outil_10a_go_siyaha.pdf" class="btn btn-ocre" download>⬇ GO SIYAHA</a>
+        <a href="outils/outil_10b_moukawala.pdf" class="btn btn-beige" download>⬇ MOUKAWALA</a>
+      </div>
+    </div>
+
+    <div class="carte p2 apparition">
+      <div class="carte-haut">
+        <span class="carte-num">11</span>
+        <div class="badges"><span class="badge b-xlsx">Excel</span></div>
+      </div>
+      <div class="carte-titre">Matrice Aide à la Décision — Financement du Projet</div>
+      <div class="carte-desc">Comparatif pour arbitrer entre financement bancaire marocain, apport en fonds propres, prêt en France ou combinaison hybride. Intègre les conditions spécifiques du crédit immobilier au Maroc et la gestion des changes MAD/EUR.</div>
+      <div class="carte-objectif">Orienter l'investisseur vers la solution de financement la plus adaptée à sa situation franco-marocaine.</div>
+      <div class="carte-boutons">
+        <a href="outils/outil_11_financement.xlsx" class="btn btn-ocre" download>⬇ Télécharger Excel</a>
+      </div>
+    </div>
+
+    <div class="carte p2 apparition">
+      <div class="carte-haut">
+        <span class="carte-num">12</span>
+        <div class="badges"><span class="badge b-xlsx">Excel</span></div>
+      </div>
+      <div class="carte-titre">Matrice Aide à la Décision — Structuration du Projet</div>
+      <div class="carte-desc">Sélection du montage optimal : choix du véhicule juridique (SA, SARL, SCI, détention directe), arbitrage fiscal (IS/IR), statut du dirigeant et optimisation de la rémunération selon la convention fiscale franco-marocaine.</div>
+      <div class="carte-objectif">Sécuriser l'architecture juridique et fiscale du projet dès la phase de création.</div>
+      <div class="carte-boutons">
+        <a href="outils/outil_12_structuration.xlsx" class="btn btn-ocre" download>⬇ Télécharger Excel</a>
+      </div>
+    </div>
+
+    <div class="carte p2 apparition">
+      <div class="carte-haut">
+        <span class="carte-num">13</span>
+        <div class="badges"><span class="badge b-pdf">PDF</span></div>
+      </div>
+      <div class="carte-titre">Checklist des Autorisations à l'Exploitation</div>
+      <div class="carte-desc">Recensement exhaustif de toutes les licences et autorisations obligatoires pour exploiter un établissement touristique au Maroc (Loi 80-14) : licence d'hôtel, classement étoiles, autorisation sanitaire, licence débit de boissons, etc.</div>
+      <div class="carte-objectif">Anticiper l'ensemble des démarches administratives pour éviter tout retard à l'ouverture.</div>
+      <div class="carte-boutons">
+        <a href="outils/outil_13_checklist.pdf" class="btn btn-ocre" download>⬇ Télécharger PDF</a>
+      </div>
+    </div>
+
+    <div class="carte p2 apparition">
+      <div class="carte-haut">
+        <span class="carte-num">15</span>
+        <div class="badges"><span class="badge b-xlsx">Excel</span></div>
+      </div>
+      <div class="carte-titre">Simulateur Yield Management vs Tarification Fixe</div>
+      <div class="carte-desc">Simulation comparative sur un riad de 8 chambres : modélisation de la tarification dynamique face au tarif fixe, avec projection du gain de revenus annuel selon les taux d'occupation et les saisons à Marrakech.</div>
+      <div class="carte-objectif">Démontrer concrètement le gain de rentabilité de la tarification dynamique — levier sous-exploité par les propriétaires de riads.</div>
+      <div class="carte-boutons">
+        <a href="outils/outil_15_yield.xlsx" class="btn btn-ocre" download>⬇ Télécharger Excel</a>
+      </div>
+    </div>
+
+    <div class="carte p2 apparition">
+      <div class="carte-haut">
+        <span class="carte-num">17</span>
+        <div class="badges"><span class="badge b-xlsx">Excel</span><span class="badge b-docx">Word</span><span class="badge b-pptx">PPTX</span></div>
+      </div>
+      <div class="carte-titre">Prévisionnel Riad du Mémoire — Rapport & Présentation Client</div>
+      <div class="carte-desc">Livrable client complet : prévisionnel financier Excel sur 5 ans (compte de résultat, trésorerie, TRI, VAN), rapport Word d'analyse avec commentaires et présentation PowerPoint synthétique à remettre à l'investisseur.</div>
+      <div class="carte-objectif">Fournir un livrable professionnel clé en main, duplicable pour chaque mission de conseil en investissement.</div>
+      <div class="carte-boutons">
+        <a href="outils/outil_17_previsionnel.xlsx" class="btn btn-ocre" download>⬇ Excel</a>
+        <a href="outils/outil_17_rapport.docx" class="btn btn-beige" download>⬇ Rapport Word</a>
+        <a href="outils/outil_17_presentation.pptx" class="btn btn-beige" download>⬇ Présentation</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     PHASE III — PILOTAGE
+══════════════════════════════════════ -->
+<section class="section" id="phase3">
+  <div class="en-tete-section apparition">
+    <div class="bandeau-phase p3">
+      <div class="bandeau-icone">📊</div>
+      <div>
+        <div class="bandeau-num">Phase III · Outils 18 à 22</div>
+        <div class="bandeau-titre">Phase de Pilotage & Accompagnement</div>
+        <div class="bandeau-sous">Suivi comptable transfrontalier · Tableaux de bord · RSE · Fiscal dirigeant · Rapatriement des fonds</div>
+      </div>
+    </div>
+  </div>
+  <div class="grille-cartes">
+
+    <div class="carte p3 apparition">
+      <div class="carte-haut">
+        <span class="carte-num">18</span>
+        <div class="badges"><span class="badge b-xlsx">Excel</span></div>
+      </div>
+      <div class="carte-titre">Outil de Conversion Balance Marocaine → Normes Françaises</div>
+      <div class="carte-desc">Convertisseur automatisé du plan comptable CGNC (Maroc) vers le PCG (France) avec logique de normalisation des comptes, retraitement du taux de change MAD/EUR et réconciliation comptable.</div>
+      <div class="carte-objectif">Automatiser la conversion pour permettre une lecture cohérente des états financiers marocains depuis la France.</div>
+      <div class="carte-boutons">
+        <a href="outils/outil_18_conversion.xlsx" class="btn btn-vert" download>⬇ Télécharger Excel</a>
+      </div>
+    </div>
+
+    <div class="carte p3 apparition">
+      <div class="carte-haut">
+        <span class="carte-num">20</span>
+        <div class="badges"><span class="badge b-xlsx">Excel</span><span class="badge b-docx">Word</span><span class="badge b-pptx">PPTX</span></div>
+      </div>
+      <div class="carte-titre">Méthodologie RSE — Du Tableau de Bord au Rapport</div>
+      <div class="carte-desc">Dispositif complet de pilotage extra-financier : KPI RSE pour le tourisme marocain, tableau de bord de suivi, matrice de scoring et template de rapport RSE à remettre au client (aligné Stratégie Nationale Développement Durable Maroc).</div>
+      <div class="carte-objectif">Positionner l'expert-comptable comme acteur du pilotage durable face aux exigences croissantes du secteur touristique.</div>
+      <div class="carte-boutons">
+        <a href="outils/outil_20_rse.xlsx" class="btn btn-vert" download>⬇ Excel RSE</a>
+        <a href="outils/outil_20_guide_rse.docx" class="btn btn-beige" download>⬇ Guide Word</a>
+        <a href="outils/outil_20_presentation_rse.pptx" class="btn btn-beige" download>⬇ Présentation</a>
+      </div>
+    </div>
+
+    <div class="carte p3 apparition">
+      <div class="carte-haut">
+        <span class="carte-num">21</span>
+        <div class="badges"><span class="badge b-pdf">PDF</span></div>
+      </div>
+      <div class="carte-titre">Guide de Déclaration IRPP — Accompagnement Fiscal du Dirigeant</div>
+      <div class="carte-desc">Guide pratique de la déclaration des revenus du dirigeant investisseur : résidence fiscale (convention franco-marocaine), obligations déclaratives dans les deux pays, traitement des dividendes, plus-values et revenus locatifs.</div>
+      <div class="carte-objectif">Sécuriser l'accompagnement fiscal personnel du client et éviter toute double imposition non maîtrisée.</div>
+      <div class="carte-boutons">
+        <a href="outils/outil_21_irpp.pdf" class="btn btn-vert" download>⬇ Télécharger PDF</a>
+      </div>
+    </div>
+
+    <div class="carte p3 apparition">
+      <div class="carte-haut">
+        <span class="carte-num">22</span>
+        <div class="badges"><span class="badge b-pdf">PDF</span></div>
+      </div>
+      <div class="carte-titre">Guide de Rapatriement des Fonds — Gestion MAD/EUR</div>
+      <div class="carte-desc">Cadre réglementaire du rapatriement des dividendes et du produit de cession (Office des Changes, Instruction Générale 2024), procédures pratiques, compte en devises convertibles et accompagnement des transferts MAD/EUR.</div>
+      <div class="carte-objectif">Accompagner le client dans la dimension souvent méconnue du rapatriement des fonds vers la France.</div>
+      <div class="carte-boutons">
+        <a href="outils/outil_22_rapatriement.pdf" class="btn btn-vert" download>⬇ Télécharger PDF</a>
+      </div>
+    </div>
+
+    <div class="carte p3 apparition">
+      <div class="carte-haut">
+        <span class="carte-num">+</span>
+        <div class="badges"><span class="badge b-notion">Notion</span><span class="badge b-pdf">PDF</span></div>
+      </div>
+      <div class="carte-titre">Calendrier Fiscal Marocain — Notice Notion</div>
+      <div class="carte-desc">Notice d'utilisation du système de calendrier fiscal marocain sur Notion : suivi des obligations TVA, IS, IR, CNSS, liasse fiscale et toutes les échéances déclaratives mensuelles et annuelles.</div>
+      <div class="carte-objectif">Ne manquer aucune échéance fiscale marocaine grâce à un système de suivi interactif et automatisé.</div>
+      <div class="carte-boutons">
+        <a href="outils/outil_notion_calendrier.pdf" class="btn btn-vert" download>⬇ Notice Notion</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PIED DE PAGE -->
+<footer>
+  <div class="pied-ornement">◆ ◇ ◆</div>
+  <div class="pied-titre">Meryem IBRAHYM — Diplôme d'Expertise Comptable</div>
+  <div class="pied-sous">Session Mai 2026 · Kit Mission Franco-Marocain · Marrakech</div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin:'0px 0px -40px 0px' });
+document.querySelectorAll('.apparition').forEach(el => obs.observe(el));
+document.querySelectorAll('.carte').forEach((c, i) => {
+  c.style.transitionDelay = (i % 4 * 0.07) + 's';
+});
+</script>
+</body>
+</html>
